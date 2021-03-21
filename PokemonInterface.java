@@ -13,13 +13,13 @@
  */
 public interface PokemonInterface extends Comparable<PokemonInterface> {
 	
+	public int getID();
 	public String getName();
 	public int getAttack();
 	public int getDefense();
 	public int getHP();
 	public int getSpeed();
 	public int getCP();
-	public int getID();
 	public String getRegion();
 	public String[] getTypes();
 	public int compareTo(PokemonInterface otherPokemon); // from Comparable Interface

@@ -10,7 +10,6 @@
 /**
  * Interface to be implemented by the Data Wrangler to create a pokemon object 
  * @author vikas
- *
  */
 public interface PokemonInterface extends Comparable<PokemonInterface> {
 	
@@ -20,14 +19,9 @@ public interface PokemonInterface extends Comparable<PokemonInterface> {
 	public int getHP();
 	public int getSpeed();
 	public int getCP();
-
 	public int getID();
-
 	public String getRegion();
 	public String[] getTypes();
-	
-	
-	// from super interface Comparable
-	public int compareTo(PokemonInterface otherPokemon);
+	public int compareTo(PokemonInterface otherPokemon); // from Comparable Interface
 
 }

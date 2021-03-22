@@ -50,6 +50,7 @@ public class Pokemon implements PokemonInterface {
     /**
      * @return String - the name of a pokemon
      */
+    @Override
     public String getName() {
         return this.name;
     }
@@ -57,6 +58,7 @@ public class Pokemon implements PokemonInterface {
     /**
      * @return String - the region of a pokemon
      */
+    @Override
     public String getRegion() {
         return this.region;
     }
@@ -64,6 +66,7 @@ public class Pokemon implements PokemonInterface {
     /**
      * @return int - the unique ID of a pokemon
      */
+    @Override
     public int getID() {
         return this.ID;
     }
@@ -71,6 +74,7 @@ public class Pokemon implements PokemonInterface {
     /**
      * @return int - the attack stat of a pokemon
      */
+    @Override
     public int getAttack() {
         return this.attack;
     }
@@ -78,6 +82,7 @@ public class Pokemon implements PokemonInterface {
     /**
      * @return int - the defense stat of a pokemon
      */
+    @Override
     public int getDefense() {
         return this.defense;
     }
@@ -85,6 +90,7 @@ public class Pokemon implements PokemonInterface {
     /**
      * @return int - the hp (hit points) stat of a pokemon 
      */
+    @Override
     public int getHP() {
         return this.hp;
     }
@@ -92,6 +98,7 @@ public class Pokemon implements PokemonInterface {
     /**
      * @return int - the speed stat of a pokemon 
      */
+    @Override
     public int getSpeed() {
         return this.speed;
     }
@@ -100,6 +107,7 @@ public class Pokemon implements PokemonInterface {
      * The stat to represent a pokemon's power. Used as the comparitive value in the RBTree 
      * @return int - the CP of a pokemon which is calculated using the 4 stats 
      */
+    @Override
     public int getCP() {
         return (int) (attack*1.5 + defense*0.5 + hp*0.7 + Math.pow(speed, 1.2));
     }
@@ -107,6 +115,7 @@ public class Pokemon implements PokemonInterface {
     /**
      * @return String[] - the types of the pokemon (Some have 1, some have 2)
      */
+    @Override
     public String[] getTypes() {
         return this.types;
     }

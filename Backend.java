@@ -1,3 +1,12 @@
+// --== CS400 File Header Information ==--
+// Name: Arnav Karnik
+// Email: akarnik@wisc.edu
+// Team: JC Red
+// Role: Backend Developer 
+// TA: Xinyi Liu
+// Lecturer: Gary Dahl
+// Notes to Grader: None
+
 import java.io.FileNotFoundException;
 import java.io.Reader;
 import java.util.*;

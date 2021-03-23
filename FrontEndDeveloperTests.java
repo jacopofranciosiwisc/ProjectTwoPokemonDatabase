@@ -15,8 +15,6 @@ import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.Assert.fail;
 
-
-
 /**
  * This class contains a set of tests for the front end of the Pokemon Catalog project.
  */

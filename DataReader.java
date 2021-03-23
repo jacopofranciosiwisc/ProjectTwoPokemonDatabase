@@ -40,9 +40,9 @@ public class DataReader implements DataReaderInterface{
 	    	String temp = scan.next(); // next line of the CSV
 	    	if (temp != null) {
 	    		// store Pokemon attribute names into an array of Strings 
-	    		String[] headers = temp.split(",");
 	    		scan.nextLine(); 
 	    		while (scan.hasNextLine()) {
+				String[] headers = temp.split(",");
 	    			temp = scan.nextLine();
 	    			// creating a local array of Strings to store Pokemon types 
 	    			String[] types = new String[2];
@@ -50,7 +50,7 @@ public class DataReader implements DataReaderInterface{
 	    			types[1] = headers[10];
 	    			// Now we add a new Pokemon object to the list. Most of the attributes in headers were ints converted
 	    			// into strings. We have to parse those specific attributes back into ints 
-	    									// ID 							name 			attack  					defense 						HP  					Region 			Speed 					Types 
+	    						 // ID 			    name 		attack  	 		defense 		HP  			 Region 	Speed 			   Types 
 	    			list.add(new Pokemon(Integer.parseInt(headers[0]), headers[1], Integer.parseInt(headers[2]), Integer.parseInt(headers[3]), Integer.parseInt(headers[4]), headers[5], Integer.parseInt(headers[8]), types)); 
 	    		}
 	    	}

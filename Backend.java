@@ -7,7 +7,9 @@
 // Lecturer: Gary Dahl
 // Notes to Grader: None
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.Reader;
 import java.util.*;
 
@@ -23,7 +25,23 @@ public class Backend implements BackendInterface {
    * @throws FileNotFoundException - if the file isn't found
    */
   public Backend(String[] args) throws FileNotFoundException {
-    _tree = new ExtendedRedBlackTree<PokemonInterface>();
+    // declaring all the instance objects
+    //_tree = new ExtendedRedBlackTree<PokemonInterface>();
+    
+    // using readers to etract the list of Pokemon from the CSV
+    FileReader reader = new FileReader(args[0]);
+    BufferedReader file = new BufferedReader(reader);
+    DataReader pokemonDataReader = new DataReader(); // instantiating a PokemonDataReader to extract Pokemon
+    
+    //Handling exceptions in attempts to declare _tree
+    try {
+      _tree = pokemonDataReader(file);
+    } catch (DataFormatException | IOException e) {
+      System.out.println(e.getMessage());
+      return;
+    }
+    // populating the red black tree with the method call below
+    populatePokemonTree();
   }
   
   /**
@@ -32,7 +50,20 @@ public class Backend implements BackendInterface {
    * @param Reader r - the reader from the front end that facilitate's the extraction of the movies 
    */
   public Backend(Reader r) {
-    _tree = new ExtendedRedBlackTree<PokemonInterface>();
+    //_tree = new ExtendedRedBlackTree<PokemonInterface>();
+    
+    DataReader pokemonDataReader = new DataReader();
+    
+    // Handling exceptions in attempts to declare _tree
+    try {
+      _tree = pokemonDataReader.readDataSet(r);
+    } catch(DataFormatException | IOException e) {
+      System.out.println(e.getMessage());
+      return;
+    }
+    
+    // Populating the red black tree with the method call below
+    populatePokemonTree();
   }
   
   /**

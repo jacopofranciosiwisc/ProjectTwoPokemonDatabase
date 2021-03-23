@@ -7,7 +7,7 @@
 // Lecturer: Gary Dahl
 // Notes to Grader: None
 
-public class ExtendedRedBlackTree<T> extends RedBlackTree{
+public class ExtendedRedBlackTree<T> extends RedBlackTree<PokemonInterface>{
   public ExtendedRedBlackTree() {
     super();
   }
@@ -15,18 +15,28 @@ public class ExtendedRedBlackTree<T> extends RedBlackTree{
     return getNodeHelper(cp, root);
   }
   public PokemonInterface getNodeHelper(int cp, Node<PokemonInterface> current) {
-    while(current != null) {
+    if(current != null) {
       if(cp > current.data.getCP()) {
-        // do something
+        if(current.rightChild != null) {
+          return getNodeHelper(cp, current.rightChild);
+        } else {
+          // if the pokemon in the red black tree do not have a cp value provided
+          return current.data;
+        }
       } else if(cp < current.data.getCP()) {
-        // do another something
+        if(current.leftChild != null) {
+          return getNodeHelper(cp, current.leftChild);
+        } else {
+          // if the pokemon in the red black tree do not have a cp value provided
+          return current.data;
+        }
       }
       else {
         // when you find the pokemon with the cp value
         return current.data;
       }
     }
-    // if the pokemon in the red black tree do not have a cp value provided
-    return current.parent.data;
+    return null;
   }
 }
+

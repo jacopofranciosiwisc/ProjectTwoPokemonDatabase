@@ -47,7 +47,7 @@ public class DataReader implements DataReaderInterface{
 	    			types[0] = headers[9];
 	    			types[1] = headers[10];
 				if (types[1].equals("None")) types[1] = null;
-				temp = inScan.nextLine();
+				temp = scan.nextLine();
 	    			// Now we add a new Pokemon object to the list. Most of the attributes in headers were ints converted
 	    			// into strings. We have to parse those specific attributes back into ints 
 	    						 // ID 			    name 		attack  	 		defense 		HP  			 Region 	Speed 			   Types 

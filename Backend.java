@@ -1,14 +1,29 @@
+import java.io.FileNotFoundException;
+import java.io.Reader;
 import java.util.*;
 
 public class Backend implements BackendInterface {
   
-  private RedBlackTree<PokemonInterface> _tree; // Red Black Tree containing all Pokemon
+  private ExtendedRedBlackTree<PokemonInterface> _tree; // Red Black Tree containing all Pokemon
   
   /**
-   * Constructor that instantiates the backend object and the red black tree as well
+   * Constructor to instantiate backend using a string array of arguments.
+   * These arguments will be extracted from readDataSet()  written by the Data Wrangler 
+   * 
+   * @param args - String[] of arguments 
+   * @throws FileNotFoundException - if the file isn't found
    */
-  public Backend() {
-    _tree = new RedBlackTree<PokemonInterface>();
+  public Backend(String[] args) throws FileNotFoundException {
+    _tree = new ExtendedRedBlackTree<PokemonInterface>();
+  }
+  
+  /**
+   * Constructor to instantiate backend using a Reader object.
+   * These reader will be used to extract pokemon from readDataSet() written by the Data Wrangler 
+   * @param Reader r - the reader from the front end that facilitate's the extraction of the movies 
+   */
+  public Backend(Reader r) {
+    _tree = new ExtendedRedBlackTree<PokemonInterface>();
   }
   
   /**
@@ -34,26 +49,7 @@ public class Backend implements BackendInterface {
   @Override
   public PokemonInterface findPokemonCP(int cp) {
     // TODO Auto-generated method stub
-    if(_tree == null) throw new NullPointerException(
-          "This RedBlackTree cannot store null references.");
-    return getPokemonHelper(cp, _tree.root);
-  }
-  
-  private PokemonInterface getPokemonHelper(int val, Node<PokemonInterface> subtree) {
-    if(subtree == null) {
-      return subtree.parent;
-    }
-    else {
-      int compare = val.compareTo(subtree.data);
-      if(compare < 0) {
-        return getPokemonHelper(val, subtree.leftChild);
-      } else if(compare > 0) {
-        return getPokemonHelper(val, subtree.rightChild);
-      } else {
-        // pokemon was found with specific cp value
-        return subtree;
-      }
-    }
+    return _tree.getNode(cp);
   }
   
   /**
@@ -85,11 +81,11 @@ public class Backend implements BackendInterface {
   @Override
   public List<PokemonInterface> getPokemonCPRange(int cp1, int cp2) {
     // TODO Auto-generated method stub
-    ArrayList<PokemonInterface> list_pokemonInCPRange = new ArrayList<Pokemon>();
+    ArrayList<PokemonInterface> list_pokemonInCPRange = new ArrayList<PokemonInterface>();
     Iterator<PokemonInterface> treeIterator = _tree.iterator();
     while(treeIterator.hasNext()) {
       PokemonInterface next = treeIterator.next();
-      if(next.getCP() > cp1 && next.getCP() < cp2) {
+      if(next.getCP() >= cp1 && next.getCP() <= cp2) {
         list_pokemonInCPRange.add(next);
       }
     }

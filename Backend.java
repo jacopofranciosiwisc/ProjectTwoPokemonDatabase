@@ -10,12 +10,14 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 import java.util.*;
 
 public class Backend implements BackendInterface {
   
   private ExtendedRedBlackTree<PokemonInterface> _tree; // Red Black Tree containing all Pokemon
+  private List<PokemonInterface> objList; // List of all the pokemon
   
   /**
    * Constructor to instantiate backend using a string array of arguments.
@@ -35,8 +37,8 @@ public class Backend implements BackendInterface {
     
     //Handling exceptions in attempts to declare _tree
     try {
-      _tree = pokemonDataReader(file);
-    } catch (DataFormatException | IOException e) {
+      objList = pokemonDataReader.readDataSet(file);
+    } catch (IOException e) {
       System.out.println(e.getMessage());
       return;
     }
@@ -56,8 +58,8 @@ public class Backend implements BackendInterface {
     
     // Handling exceptions in attempts to declare _tree
     try {
-      _tree = pokemonDataReader.readDataSet(r);
-    } catch(DataFormatException | IOException e) {
+      objList = pokemonDataReader.readDataSet(r);
+    } catch(IOException e) {
       System.out.println(e.getMessage());
       return;
     }
@@ -70,7 +72,9 @@ public class Backend implements BackendInterface {
    * Private helper method to populate the Pokemon Red Black Tree
    */
   private void populatePokemonTree() {
-    
+    for (PokemonInterface p: objList) {
+      _tree.insert(p);
+    }
   }
   
   /**

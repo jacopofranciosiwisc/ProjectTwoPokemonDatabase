@@ -28,7 +28,7 @@ public class Backend implements BackendInterface {
    */
   public Backend(String[] args) throws FileNotFoundException {
     // declaring all the instance objects
-    //_tree = new ExtendedRedBlackTree<PokemonInterface>();
+    _tree = new ExtendedRedBlackTree<PokemonInterface>();
     
     // using readers to etract the list of Pokemon from the CSV
     FileReader reader = new FileReader(args[0]);
@@ -52,7 +52,7 @@ public class Backend implements BackendInterface {
    * @param Reader r - the reader from the front end that facilitate's the extraction of the movies 
    */
   public Backend(Reader r) {
-    //_tree = new ExtendedRedBlackTree<PokemonInterface>();
+    _tree = new ExtendedRedBlackTree<PokemonInterface>();
     
     DataReader pokemonDataReader = new DataReader();
     
@@ -73,7 +73,12 @@ public class Backend implements BackendInterface {
    */
   private void populatePokemonTree() {
     for (PokemonInterface p: objList) {
-      _tree.insert(p);
+      try {
+        _tree.insert(p);
+      } catch (IllegalArgumentException e) {
+        // duplicate value
+      }
+      
     }
   }
   

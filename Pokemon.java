@@ -36,7 +36,7 @@ public class Pokemon implements PokemonInterface {
      * @param r - String region 
      * @param t - String[] type 
      */
-    public Pokemon(int i, String n, int a, int d, int h, int s, String r, String[] t) {
+    public Pokemon(int i, String n, int a, int d, int h, String r, int s, String[] t) {
         this.ID = i;
         this.name = n;
         this.attack = a;

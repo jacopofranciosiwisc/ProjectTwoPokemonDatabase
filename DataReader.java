@@ -48,8 +48,12 @@ public class DataReader implements DataReaderInterface{
 	    		if (types[1].equals("None")) types[1] = null;
 	    		// Now we add a new Pokemon object to the list. Most of the attributes in headers were ints converted
 	    		// into strings. We have to parse those specific attributes back into ints 
-	    					// ID 			    name 	 attack  			defense 			HP  			  Region 	 Speed 			   Types 
-	    		list.add(new Pokemon(Integer.parseInt(headers[0]), headers[1], Integer.parseInt(headers[2]), Integer.parseInt(headers[3]), Integer.parseInt(headers[4]), headers[5], Integer.parseInt(headers[8]), types)); 
+						// ID			   name 
+	    		list.add(new Pokemon(Integer.parseInt(headers[0]), headers[1], 
+	    					// attack 		 defense 				 HP
+	    				Integer.parseInt(headers[2]), Integer.parseInt(headers[3]), Integer.parseInt(headers[4]), 
+	    				//region	speed 	        	  types
+	    				headers[5], Integer.parseInt(headers[8]), types)); 			 
 	    		temp = scan.nextLine();
 	   		}
 	    }

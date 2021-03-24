@@ -4,7 +4,8 @@
 // Team: JC (red team)
 // TA: Xinyi Liu
 // Lecturer: Gary Dahl
-// Notes to Grader: None
+// Notes to Grader: Although my name is listed as the author of this code, I implemented only the RBT aspect of the
+//                  code. The course staff implemented the rest.
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -261,6 +262,7 @@ public class RedBlackTree<T extends Comparable<T>> implements SortedCollectionIn
             }
         }
     }
+
 
     /**
      * Returns an iterator over the values in in-order (sorted) order.

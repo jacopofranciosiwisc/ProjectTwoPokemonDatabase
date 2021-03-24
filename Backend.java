@@ -2,7 +2,7 @@
 // Name: Arnav Karnik
 // Email: akarnik@wisc.edu
 // Team: JC Red
-// Role: Backend Developer 
+// Role: Backend Developer
 // TA: Xinyi Liu
 // Lecturer: Gary Dahl
 // Notes to Grader: None
@@ -15,26 +15,26 @@ import java.io.Reader;
 import java.util.*;
 
 public class Backend implements BackendInterface {
-  
+
   private ExtendedRedBlackTree<PokemonInterface> _tree; // Red Black Tree containing all Pokemon
   private List<PokemonInterface> objList; // List of all the pokemon
-  
+
   /**
    * Constructor to instantiate backend using a string array of arguments.
-   * These arguments will be extracted from readDataSet()  written by the Data Wrangler 
-   * 
-   * @param args - String[] of arguments 
+   * These arguments will be extracted from readDataSet()  written by the Data Wrangler
+   *
+   * @param args - String[] of arguments
    * @throws FileNotFoundException - if the file isn't found
    */
   public Backend(String[] args) throws FileNotFoundException {
     // declaring all the instance objects
     _tree = new ExtendedRedBlackTree<PokemonInterface>();
-    
+
     // using readers to etract the list of Pokemon from the CSV
     FileReader reader = new FileReader(args[0]);
     BufferedReader file = new BufferedReader(reader);
     DataReader pokemonDataReader = new DataReader(); // instantiating a PokemonDataReader to extract Pokemon
-    
+
     //Handling exceptions in attempts to declare _tree
     try {
       objList = pokemonDataReader.readDataSet(file);
@@ -45,17 +45,17 @@ public class Backend implements BackendInterface {
     // populating the red black tree with the method call below
     populatePokemonTree();
   }
-  
+
   /**
    * Constructor to instantiate backend using a Reader object.
-   * These reader will be used to extract pokemon from readDataSet() written by the Data Wrangler 
-   * @param Reader r - the reader from the front end that facilitate's the extraction of the movies 
+   * These reader will be used to extract pokemon from readDataSet() written by the Data Wrangler
+   * @param r - the reader from the front end that facilitate's the extraction of the movies
    */
   public Backend(Reader r) {
     _tree = new ExtendedRedBlackTree<PokemonInterface>();
-    
+
     DataReader pokemonDataReader = new DataReader();
-    
+
     // Handling exceptions in attempts to declare _tree
     try {
       objList = pokemonDataReader.readDataSet(r);
@@ -63,11 +63,11 @@ public class Backend implements BackendInterface {
       System.out.println(e.getMessage());
       return;
     }
-    
+
     // Populating the red black tree with the method call below
     populatePokemonTree();
   }
-  
+
   /**
    * Private helper method to populate the Pokemon Red Black Tree
    */
@@ -78,10 +78,10 @@ public class Backend implements BackendInterface {
       } catch (IllegalArgumentException e) {
         // duplicate value
       }
-      
+
     }
   }
-  
+
   /**
    * Allows the front end to add another pokemon into the red black tree
    */
@@ -100,7 +100,7 @@ public class Backend implements BackendInterface {
     // TODO Auto-generated method stub
     return _tree.getNode(cp);
   }
-  
+
   /**
    * Method that creates a list of the selected Pokemon type inputed by the user
    * @return list of Pokemon with the selected type
@@ -113,7 +113,7 @@ public class Backend implements BackendInterface {
     while(treeIterator.hasNext()) {
       PokemonInterface next = treeIterator.next();
       for(int i=0;i<next.getTypes().length;i++) {
-        if(type.contains(next.getTypes()[i])) {
+        if(type.equalsIgnoreCase(next.getTypes()[i])) {
           list_types.add(next);
         }
       }
@@ -122,7 +122,7 @@ public class Backend implements BackendInterface {
   }
 
   /**
-   * Method that creates a list of Pokemon whose CP values are within 
+   * Method that creates a list of Pokemon whose CP values are within
    * the range inputed by the user
    * @return a list of Pokemon whose CP values are within the
    *         range that is selected by the user
@@ -153,10 +153,11 @@ public class Backend implements BackendInterface {
     Iterator<PokemonInterface> treeIterator = _tree.iterator();
     while(treeIterator.hasNext()) {
       PokemonInterface next = treeIterator.next();
-      if(region.contains(next.getRegion().toLowerCase().trim())) {
+      if(region.equalsIgnoreCase(next.getRegion().trim())) {
         list_regions.add(next);
       }
     }
+
     return list_regions;
   }
 }

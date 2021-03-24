@@ -8,6 +8,8 @@
 // Notes to Grader: None
 
 import java.util.List;
+import java.util.zip.DataFormatException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Reader;
 
@@ -18,6 +20,6 @@ import java.io.Reader;
  */
 public interface DataReaderInterface{
 
-	public List<PokemonInterface> readDataSet(Reader inputFileReader) throws IOException;
+	public List<PokemonInterface> readDataSet(Reader inputFileReader) throws FileNotFoundException, IOException, DataFormatException;
 
 }

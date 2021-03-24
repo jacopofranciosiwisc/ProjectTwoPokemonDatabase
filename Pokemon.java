@@ -9,15 +9,15 @@
 
 
 /**
- * Class to implement a Pokemon objet 
+ * Class to implement a Pokemon objet
  * @author vikas
  *
  */
 public class Pokemon implements PokemonInterface {
-    
-    private int ID; // unique for all pokemon 
+
+    private int ID; // unique for all pokemon
     private String name;
-    // the following 4 variables are a pokemon's stats 
+    // the following 4 variables are a pokemon's stats
     private int attack;
     private int defense;
     private int hp;
@@ -26,15 +26,15 @@ public class Pokemon implements PokemonInterface {
     private String[] types;
 
     /**
-     * Constructor to initialize a pokemon object 
+     * Constructor to initialize a pokemon object
      * @param i - int ID
-     * @param n - String name 
+     * @param n - String name
      * @param a - int attack
-     * @param d - int defense 
+     * @param d - int defense
      * @param h - int hp
      * @param s - int speed
-     * @param r - String region 
-     * @param t - String[] type 
+     * @param r - String region
+     * @param t - String[] type
      */
     public Pokemon(int i, String n, int a, int d, int h, String r, int s, String[] t) {
         this.ID = i;
@@ -88,7 +88,7 @@ public class Pokemon implements PokemonInterface {
     }
 
     /**
-     * @return int - the hp (hit points) stat of a pokemon 
+     * @return int - the hp (hit points) stat of a pokemon
      */
     @Override
     public int getHP() {
@@ -96,7 +96,7 @@ public class Pokemon implements PokemonInterface {
     }
 
     /**
-     * @return int - the speed stat of a pokemon 
+     * @return int - the speed stat of a pokemon
      */
     @Override
     public int getSpeed() {
@@ -104,8 +104,8 @@ public class Pokemon implements PokemonInterface {
     }
 
     /**
-     * The stat to represent a pokemon's power. Used as the comparitive value in the RBTree 
-     * @return int - the CP of a pokemon which is calculated using the 4 stats 
+     * The stat to represent a pokemon's power. Used as the comparitive value in the RBTree
+     * @return int - the CP of a pokemon which is calculated using the 4 stats
      */
     @Override
     public int getCP() {
@@ -119,7 +119,7 @@ public class Pokemon implements PokemonInterface {
     public String[] getTypes() {
         return this.types;
     }
-    
+
     /**
      * Compares 2 pokemon objects by CP
      * @param - PokemonInterface b
@@ -127,11 +127,11 @@ public class Pokemon implements PokemonInterface {
      */
     @Override
     public int compareTo(PokemonInterface b) {
-    	if (this.getCP() > b.getCP())
-    		return 1; // if this is greater than b
-    	else if (this.getCP() < b.getCP())
-    		return -1; // if this is less than b
-    	else 
-    		return 0; // if this and b are equal
+        if (this.getCP() > b.getCP())
+            return 1; // if this is greater than b
+        else if (this.getCP() < b.getCP())
+            return -1; // if this is less than b
+        else
+            return 0; // if this and b are equal
     }
 }

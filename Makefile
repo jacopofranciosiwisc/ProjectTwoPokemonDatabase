@@ -45,8 +45,8 @@ testBackend: BackEndDeveloperTests.java
 	javac BackEndDeveloperTests.java
 	@echo "FIXME: *make testFrontend* should compile (when needed) and run all your team's tests for this application"
 
-testData: DataWranglerDeveloperTests.java
-	javac DataWrangelerDeveloperTests.java
+testData: DataWranglerTests.java
+	javac DataWranglerDeveloperTests.java
 	@echo "FIXME: *make testFrontend* should compile (when needed) and run all your team's tests for this application"
 
 clean:

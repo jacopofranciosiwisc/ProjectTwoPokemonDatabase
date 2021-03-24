@@ -23,7 +23,7 @@ public class BackEndDeveloperTests {
   void createBackend() {
     
     try {
-      r1 = new FileReader("src/pokemon_stats.csv");
+      r1 = new FileReader("pokemon_stats.csv");
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

@@ -10,6 +10,7 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,7 +22,7 @@ import java.util.Scanner;
  */
 public class Frontend {
 
-    private BufferedReader inputFile; // refers to the variable holding the input file for the backend instantiation
+    public BufferedReader inputFile; // refers to the variable holding the input file for the backend instantiation. It is public so that the test suite can access it.
     private Scanner scanner; // the scanner used throughout the program maintaining the same input buffer
     private static int idOfNewPokemon; // the static int is used to keep track of IDs of newly added Pokemon
 
@@ -43,7 +44,7 @@ public class Frontend {
         }
         inputFile = filein;
         scanner = new Scanner(System.in);
-        idOfNewPokemon = 900; // ID starts at 900 since existing pokemon in the database populate approximately 0-900
+        idOfNewPokemon = 885; // ID starts at 885 since existing pokemon in the database populate  0-884
     }
 
     /**
@@ -155,7 +156,7 @@ public class Frontend {
 
         // use pokemon constructor to create pokemon out of given attributes:
         Pokemon pokemon = new Pokemon(idOfNewPokemon, name, Integer.parseInt(attack), Integer.parseInt(defense),
-                Integer.parseInt(HP), Integer.parseInt(speed), region, new String[] {type1, type2});
+                Integer.parseInt(HP), region, Integer.parseInt(speed), new String[] {type1, type2});
         // add pokemon to RBT using backend reference:
         backend.addPokemon(pokemon);
         // change ID for next added pokemon:
@@ -196,9 +197,12 @@ public class Frontend {
                 String cp = scanner.next();
                 if (cp.equals("x"))
                     continue;
-                Pokemon pokemon = backend.findPokemonCP(Integer.parseInt(cp));
-                if (pokemon != null)
-                    System.out.println(pokemon);
+                PokemonInterface pokemon = backend.findPokemonCP(Integer.parseInt(cp));
+                if (pokemon != null) {
+                    ArrayList<PokemonInterface> singlePokemon = new ArrayList<>();
+                    singlePokemon.add(pokemon);
+                    displayPokemon(singlePokemon);
+                }
                 else
                     System.out.println("No Pokemon were found with this CP!"); // in case pokemon is null (no CP values are close), tell user
             }
@@ -207,7 +211,7 @@ public class Frontend {
                 String region = scanner.next();
                 if (region.equals("x"))
                     continue;
-                List<Pokemon> pokemon = backend.getPokemonRegion(region);
+                List<PokemonInterface> pokemon = backend.getPokemonRegion(region);
                 displayPokemon(pokemon);
             }
             else if (command.equals("t")) {
@@ -216,7 +220,7 @@ public class Frontend {
                 String type = scanner.next();
                 if (type.equals("x"))
                     continue;
-                List<Pokemon> pokemon = backend.getPokemonType(type);
+                List<PokemonInterface> pokemon = backend.getPokemonType(type);
                 displayPokemon(pokemon);
             }
             else if (command.equals("g")) {
@@ -231,7 +235,7 @@ public class Frontend {
                 String cpu = scanner.next();
                 if (cpu.equals("x"))
                     continue;
-                List<Pokemon> pokemon = backend.getPokemonCPRange(Integer.parseInt(cpl), Integer.parseInt(cpu));
+                List<PokemonInterface> pokemon = backend.getPokemonCPRange(Integer.parseInt(cpl), Integer.parseInt(cpu));
                 displayPokemon(pokemon);
             }
             else
@@ -244,12 +248,12 @@ public class Frontend {
      *
      * @param pokemon the list of pokemon that are to be displayed as search results
      */
-    public void displayPokemon(List<Pokemon> pokemon) {
+    public void displayPokemon(List<PokemonInterface> pokemon) {
         System.out.println("----------------------------------");
         System.out.println("Pokemon matching search results:");
         String builder;
         // iterate through the pokemon in the list (based on whatever parameter) and print info
-        for (Pokemon p : pokemon) {
+        for (PokemonInterface p : pokemon) {
             builder = "ID#"+p.getID() + "\t" + p.getName();
             builder = builder + "\n\tCP:\t"+ p.getCP();
             builder = builder + "\n\tRegion: " + p.getRegion();

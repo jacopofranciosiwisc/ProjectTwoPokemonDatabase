@@ -14,6 +14,13 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.*;
 
+/**
+ * Backend class that creates the instance of the Backend object and implements
+ * the BackendInterface
+ * 
+ * @author arnav
+ *
+ */
 public class Backend implements BackendInterface {
 
   private ExtendedRedBlackTree<PokemonInterface> _tree; // Red Black Tree containing all Pokemon
